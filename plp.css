@@ -1098,6 +1098,9 @@
    Colour comments name the DS token; hex is the token value.
    ════════════════════════════════════════════════════════════════════ */
 .advisor { padding-block: var(--sp-4); }   /* symmetric top/bottom */
+/* In-column placement: advisor sits at the top of the product list, flush with the
+   top of the filter sidebar (no top padding); keeps a gap before the product cards. */
+.catalog__main > .advisor { padding-top: 0; }
 
 /* ── Collapsible dropdown: slim bar (default) ⇄ full card ── */
 .advisor__bar {

@@ -7,7 +7,7 @@
 <title>Türsprechanlagen online kaufen | Video & Audio — Metzler</title>
 <meta name="description" content="Moderne Türsprechanlagen von Metzler: Video- & Audio-Gegensprechanlagen, IP- und 2-Draht-BUS-Systeme, Ein- und Mehrfamilien, mit Fingerprint, Gesichtserkennung & App-Anbindung." />
 <link rel="stylesheet" href="Home/styles-v2.css?v=9" />
-<link rel="stylesheet" href="plp.css?v=261" />
+<link rel="stylesheet" href="plp.css?v=262" />
   <meta name="robots" content="noindex, nofollow" />
 </head>
 <body class="plp sprech">
@@ -399,34 +399,6 @@
   </div>
 </section>
 
-<!-- ===== KI-KAUFBERATER (narrows the catalogue below) ===== -->
-<section class="advisor" data-ai aria-label="Kaufberater">
-  <div class="container">
-
-    <!-- Collapsed dropdown header (default state) -->
-    <button type="button" class="advisor__bar" data-ai-toggle aria-expanded="false" aria-controls="advisorPanel">
-      <span class="advisor__bar-txt">
-        <span class="advisor__bar-head">
-          <span class="advisor__bar-title">Finden statt Suchen</span>
-        </span>
-        <span class="advisor__bar-sub">Beantworten Sie ein paar kurze Fragen – der Berater empfiehlt Ihnen die passende Türsprechanlage.</span>
-      </span>
-      <span class="advisor__bar-cta">Kaufberater<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chevron-right"/></svg></span>
-    </button>
-
-    <div class="advisor__card" id="advisorPanel">
-      <button type="button" class="advisor__collapse" data-ai-toggle aria-label="Berater schließen"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
-
-      <!-- Guided quiz (steps rendered by JS) -->
-      <div class="advisor__quiz" data-ai-quiz></div>
-
-      <!-- Result summary (injected) -->
-      <div class="advisor__results" data-ai-results aria-live="polite" hidden></div>
-
-    </div>
-  </div>
-</section>
-
 <!-- ===== TOOLBAR + GRID ===== -->
 <section class="catalog section" id="grid" aria-label="Produkte">
   <div class="container">
@@ -477,6 +449,25 @@
 
       <!-- PRODUCT GRID -->
       <div class="catalog__main">
+        <!-- Kaufberater (top-aligned with the filters, directly above the product cards) -->
+        <section class="advisor" data-ai aria-label="Kaufberater">
+          <button type="button" class="advisor__bar" data-ai-toggle aria-expanded="false" aria-controls="advisorPanel">
+            <span class="advisor__bar-txt">
+              <span class="advisor__bar-head">
+                <span class="advisor__bar-title">Finden statt Suchen</span>
+              </span>
+              <span class="advisor__bar-sub">Beantworten Sie ein paar kurze Fragen – der Berater empfiehlt Ihnen die passende Türsprechanlage.</span>
+            </span>
+            <span class="advisor__bar-cta">Kaufberater<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chevron-right"/></svg></span>
+          </button>
+
+          <div class="advisor__card" id="advisorPanel">
+            <button type="button" class="advisor__collapse" data-ai-toggle aria-label="Berater schließen"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
+            <div class="advisor__quiz" data-ai-quiz></div>
+            <div class="advisor__results" data-ai-results aria-live="polite" hidden></div>
+          </div>
+        </section>
+
         <div class="pgrid" id="productGrid" aria-live="polite"></div>
 
         <!-- Empty state -->
