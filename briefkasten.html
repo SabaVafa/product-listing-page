@@ -283,34 +283,6 @@
   </div>
 </section>
 
-<!-- ===== KI-KAUFBERATER (narrows the catalogue below) ===== -->
-<section class="advisor" data-ai aria-label="Kaufberater">
-  <div class="container">
-
-    <!-- Collapsed dropdown header (default state) -->
-    <button type="button" class="advisor__bar" data-ai-toggle aria-expanded="false" aria-controls="advisorPanel">
-      <span class="advisor__bar-txt">
-        <span class="advisor__bar-head">
-          <span class="advisor__bar-title">Finden statt Suchen</span>
-        </span>
-        <span class="advisor__bar-sub">Beantworten Sie ein paar kurze Fragen – der Berater empfiehlt Ihnen die passenden Briefkästen.</span>
-      </span>
-      <span class="advisor__bar-cta">Kaufberater<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chevron-right"/></svg></span>
-    </button>
-
-    <div class="advisor__card" id="advisorPanel">
-      <button type="button" class="advisor__collapse" data-ai-toggle aria-label="Berater schließen"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
-
-      <!-- Guided quiz (steps rendered by JS) -->
-      <div class="advisor__quiz" data-ai-quiz></div>
-
-      <!-- Result summary (injected) -->
-      <div class="advisor__results" data-ai-results aria-live="polite" hidden></div>
-
-    </div>
-  </div>
-</section>
-
 <!-- ===== TOOLBAR + GRID ===== -->
 <section class="catalog section" id="grid" aria-label="Produkte">
   <div class="container">
@@ -373,6 +345,27 @@
 
       <!-- PRODUCT GRID -->
       <div class="catalog__main">
+        <!-- Kaufberater + Masspruefung (embedded; top-aligned with the filters, above the product cards) -->
+        <div class="advisor-embed">
+          <iframe id="beraterFrame" src="plp-berater.html?cat=briefkasten&v=1" title="Metzler Kaufberater" scrolling="no" style="width:100%;border:0;display:block;overflow:hidden;min-height:120px"></iframe>
+        </div>
+        <script>
+        (function(){
+          var f=document.getElementById("beraterFrame"); if(!f) return;
+          var last=0;
+          function set(h){ if(h && h!==last){ last=h; f.style.height=h+"px"; } }
+          // Primary: the embedded tool reports its own height via postMessage.
+          // Works cross-origin, including when this page is opened as a local file://.
+          window.addEventListener("message", function(e){
+            if(e.source!==f.contentWindow) return;
+            var m=e.data; if(m && m.type==="mf-height" && m.h) set(m.h);
+          });
+          // Fallback: same-origin measuring (when served), in case a message is missed.
+          function fit(){ try{ var d=f.contentDocument; if(!d) return; var t=d.querySelector(".tool"); var h=t?Math.ceil(t.getBoundingClientRect().bottom):(d.body?d.body.scrollHeight:0); if(h) set(h); }catch(e){} }
+          f.addEventListener("load", fit);
+          setInterval(fit, 800);
+        })();
+        </script>
         <div class="pgrid" id="productGrid" aria-live="polite"></div>
 
         <!-- Empty state -->

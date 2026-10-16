@@ -449,24 +449,24 @@
 
       <!-- PRODUCT GRID -->
       <div class="catalog__main">
-        <!-- Kaufberater (top-aligned with the filters, directly above the product cards) -->
-        <section class="advisor" data-ai aria-label="Kaufberater">
-          <button type="button" class="advisor__bar" data-ai-toggle aria-expanded="false" aria-controls="advisorPanel">
-            <span class="advisor__bar-txt">
-              <span class="advisor__bar-head">
-                <span class="advisor__bar-title">Finden statt Suchen</span>
-              </span>
-              <span class="advisor__bar-sub">Beantworten Sie ein paar kurze Fragen – der Berater empfiehlt Ihnen die passende Türsprechanlage.</span>
-            </span>
-            <span class="advisor__bar-cta">Kaufberater<svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chevron-right"/></svg></span>
-          </button>
-
-          <div class="advisor__card" id="advisorPanel">
-            <button type="button" class="advisor__collapse" data-ai-toggle aria-label="Berater schließen"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
-            <div class="advisor__quiz" data-ai-quiz></div>
-            <div class="advisor__results" data-ai-results aria-live="polite" hidden></div>
-          </div>
-        </section>
+        <!-- Kaufberater (embedded; top-aligned with the filters, above the product cards) -->
+        <div class="advisor-embed">
+          <iframe id="beraterFrame" src="plp-berater.html?cat=sprechanlage&v=1" title="Metzler Kaufberater" scrolling="no" style="width:100%;border:0;display:block;overflow:hidden;min-height:120px"></iframe>
+        </div>
+        <script>
+        (function(){
+          var f=document.getElementById("beraterFrame"); if(!f) return;
+          var last=0;
+          function set(h){ if(h && h!==last){ last=h; f.style.height=h+"px"; } }
+          window.addEventListener("message", function(e){
+            if(e.source!==f.contentWindow) return;
+            var m=e.data; if(m && m.type==="mf-height" && m.h) set(m.h);
+          });
+          function fit(){ try{ var d=f.contentDocument; if(!d) return; var b=d.querySelector(".advisor"); var h=b?Math.ceil(b.getBoundingClientRect().bottom+4):(d.body?d.body.scrollHeight:0); if(h) set(h); }catch(e){} }
+          f.addEventListener("load", fit);
+          setInterval(fit, 800);
+        })();
+        </script>
 
         <div class="pgrid" id="productGrid" aria-live="polite"></div>
 
