@@ -692,7 +692,7 @@
    SEO content block (bottom of page) — matches the live website
    ============================================================ */
 .seo { border-top: 1px solid var(--line); }
-.seo__title { font-size: var(--text-h2); font-weight: 700; color: var(--schwarz); margin-bottom: var(--sp-5); }
+.seo__title { font-size: clamp(1.125rem, 0.77rem + 1.5vw, var(--text-h2)); font-weight: 700; color: var(--schwarz); margin-bottom: var(--sp-5); }   /* fluid: 18px on small phones → 24px (h2) from ~768px up */
 .seo__text {
   position: relative; overflow: hidden;
   max-height: 5.4em; transition: max-height 0.35s ease;   /* ~2 lines clear, the rest fades out below */
@@ -841,7 +841,6 @@
   .pcard__tags { gap: 6px; }
 
   .catalog__title { font-size: 17px; }
-  .seo__title { font-size: var(--text-h3); }   /* h2 (24px) is too heavy on phones — step down to h3 (20px) */
   .catalog__count { font-size: var(--text-body-sm); }
   .catalog__filter-btn { height: 34px; padding: 0 14px; }
 
