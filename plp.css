@@ -730,7 +730,7 @@
 /* Briefkasten FAQ: two columns with the "Warum Metzler?" trust card on the left.
    Scoped via :has() to the aside so the Sprechanlage FAQ (no aside) stays single-column. */
 .faq__inner:has(.faq__aside) {
-  grid-template-columns: 340px 1fr;
+  grid-template-columns: var(--sidebar-w) 1fr;   /* match the filter sidebar width (288px) so the left column aligns */
   gap: clamp(var(--sp-8), 4vw, var(--sp-12));
 }
 
